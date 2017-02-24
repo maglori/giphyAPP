@@ -1,0 +1,25 @@
+button,
+form,
+div,
+input {
+    margin: 10px;
+}
+img {
+  max-width:300px;
+  max-height:200px;
+}
+
+button:hover,
+img:hover {
+  cursor:pointer;
+}
+  
+#gifs-view {
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.imgBox {
+  border: 1px solid blue;
+  text-align:center;
+}
