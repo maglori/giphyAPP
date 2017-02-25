@@ -44,9 +44,16 @@ function showFruityGifs() {
   $("#gifs-view").empty()
   event.preventDefault();
 
+//since the buttons allow for spaces to go into the query terms, we replace the spaces with plus signs so the search goes through
+
   var search = $(this).data('name').replace(/\s/g, "+");;
   var newGif;
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ search + "&limit=10&rating=pg-13&api_key=dc6zaTOxFJmzC"
+
+  //endpoint :o) we get up to 10 gifs with up to a pg 13 rating.
+  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + search + "&limit=10&rating=pg-13&api_key=dc6zaTOxFJmzC"
+
+  //when the ajax query goes through, we make a new div, put a gif and a rating in each div, and push the divs to #gifs-view
+  //meanwhile, a link to the still image and a link to the animated image get saved in data attributes on the image element
 
   $.ajax({ 
     url: queryURL,
@@ -67,8 +74,11 @@ function showFruityGifs() {
     });
 }
 
+
 function animate() {
   
+//this function switches the image source with either its animated version or still version via data attributes when called.
+
   var animatedGif = $(this).data('alt');
   var stillGif = $(this).data('still')
   
@@ -80,6 +90,8 @@ function animate() {
   }
 }
 
+
+//we call our functions that display and animate our gifs when a button is clicked or a gif is clicked respectively.
 $(document).on("click", ".fruit", showFruityGifs);
 $(document).on("click", ".gifs", animate);
 
